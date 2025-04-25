@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="mb-4">🎬 Movie Manager</h2>
+  
+    <div class="row g-2 mb-3">
+      <div class="col-md">
+        <input class="form-control" [(ngModel)]="searchText" placeholder="🔍 Search by title" />
+      </div>
+      <div class="col-md">
+        <select class="form-select" [(ngModel)]="selectedGenre">
+          <option *ngFor="let g of genres">{{ g }}</option>
+        </select>
+      </div>
+      <div class="col-md-auto">
+        <button class="btn btn-secondary" (click)="resetFilters()">Reset</button>
+      </div>
+    </div>
+  
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Director</th>
+          <th>Release Date</th>
+          <th>Genre</th>
+          <th>❌</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let movie of filteredMovies; let i = index">
+          <td>{{ movie.title }}</td>
+          <td>{{ movie.director }}</td>
+          <td>{{ movie.releaseDate }}</td>
+          <td>{{ movie.genre }}</td>
+          <td><button class="btn btn-danger btn-sm" (click)="deleteMovie(i)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <h4 class="mt-4">➕ Add New Movie</h4>
+    <div class="row g-2">
+      <div class="col"><input class="form-control" [(ngModel)]="title" placeholder="Title" /></div>
+      <div class="col"><input class="form-control" [(ngModel)]="director" placeholder="Director" /></div>
+      <div class="col"><input class="form-control" [(ngModel)]="releaseDate" placeholder="Release Year" /></div>
+      <div class="col">
+        <select class="form-select" [(ngModel)]="genre">
+          <option disabled value="">Genre</option>
+          <option *ngFor="let g of genres.slice(1)">{{ g }}</option>
+        </select>
+      </div>
+      <div class="col-auto">
+        <button class="btn btn-primary" (click)="addMovie()">Add</button>
+      </div>
+    </div>
+  </div>
+  
